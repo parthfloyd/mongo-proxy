@@ -11,6 +11,7 @@ auth_scheme = HTTPBearer()
 
 async def get_current_user(credentials: HTTPAuthorizationCredentials = Security(auth_scheme)):
     token = credentials.credentials
+    print("test")
     decoded_token = verify_id_token(token)
     if not decoded_token:
         raise HTTPException(status_code=401, detail="Invalid authentication credentials")
