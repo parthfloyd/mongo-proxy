@@ -16,6 +16,7 @@ class MongoDB:
         return document
 
     async def create_document(self, collection_name: str, document: Dict):
+        print("test")
         collection = self.db[collection_name]
         result = await collection.insert_one(document)
         return str(result.inserted_id)
