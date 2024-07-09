@@ -26,6 +26,7 @@ async def create_document(collection_name: str, document: Dict):
 async def read_document(collection_name: str, document_id: str):
     document = await db.read_document(collection_name, document_id)
     if document is None:
+        print("test")
         raise HTTPException(status_code=404, detail="Document not found")
     
     document['_id'] = str(document['_id'])  # Convert ObjectId to string
