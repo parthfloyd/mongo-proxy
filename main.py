@@ -19,6 +19,7 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Security(
 
 @app.post("/documents/{collection_name}", dependencies=[Depends(get_current_user)])
 async def create_document(collection_name: str, document: Dict):
+   
     document_id = await db.create_document(collection_name, document)
     return {"id": document_id}
 
@@ -27,7 +28,7 @@ async def read_document(collection_name: str, document_id: str):
     document = await db.read_document(collection_name, document_id)
     if document is None:
         raise HTTPException(status_code=404, detail="Document not found")
-    
+    print("test")
     document['_id'] = str(document['_id'])  # Convert ObjectId to string
     return jsonable_encoder(document)
 
