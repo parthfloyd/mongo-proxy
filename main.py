@@ -34,6 +34,7 @@ async def read_document(collection_name: str, document_id: str):
 
 @app.put("/documents/{collection_name}/{document_id}", dependencies=[Depends(get_current_user)])
 async def update_document(collection_name: str, document_id: str, update_fields: Dict):
+    print("test 2")
     updated_document = await db.update_document(collection_name, document_id, update_fields)
     return updated_document
 
